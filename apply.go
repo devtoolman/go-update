@@ -298,7 +298,9 @@ func (o *Options) verifyChecksum(updated []byte) error {
 		return err
 	}
 
-	if !bytes.Equal(o.Checksum, checksum) {
+	checksumStr := fmt.Sprintf("%x",checksum)
+	if string(o.Checksum) != checksumStr {
+	// if !bytes.Equal(o.Checksum, checksum) {
 		return fmt.Errorf("Updated file has wrong checksum. Expected: %x, got: %x", o.Checksum, checksum)
 	}
 	return nil
